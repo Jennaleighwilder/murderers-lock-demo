@@ -883,6 +883,8 @@
     <section id="contact" class="section">
       <h2 class="section-title">Get In Touch</h2>
       <form class="contact-form" action="https://formspree.io/f/mnjblvgj" method="POST">
+        <input type="hidden" name="_subject" value="🔒 New Murderer's Lock Inquiry">
+        <input type="hidden" name="_cc" value="jenniferleighwilder@gmail.com">
         <div class="form-group">
           <label class="form-label">Name</label>
           <input type="text" name="name" class="form-input" required>
@@ -894,6 +896,16 @@
         <div class="form-group">
           <label class="form-label">Company</label>
           <input type="text" name="company" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">I'm interested in</label>
+          <select name="interest" class="form-input">
+            <option value="demo">Free Demo</option>
+            <option value="personal">Personal Plan ($29/mo)</option>
+            <option value="professional">Professional Plan ($99/mo)</option>
+            <option value="enterprise">Enterprise (Custom)</option>
+            <option value="investment">Investment Opportunity</option>
+          </select>
         </div>
         <div class="form-group">
           <label class="form-label">Message</label>
