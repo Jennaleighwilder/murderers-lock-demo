@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security & Cryptography | The Murderer's Lock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-void: #000000;
+      --neon-pink: #FF10F0;
+      --neon-cyan: #00F5FF;
+      --neon-purple: #B624FF;
+      --neon-lime: #39FF14;
+      --neon-orange: #FF6600;
+      --oil-slick: linear-gradient(135deg, #FF10F0 0%, #B624FF 15%, #00F5FF 30%, #39FF14 45%, #FFD700 60%, #FF6600 75%, #FF10F0 100%);
+      --text-white: #FFFFFF;
+      --text-silver: #E0E0E0;
+      --text-gray: #808080;
+    }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--bg-void); color: var(--text-white); min-height: 100vh; overflow-x: hidden; }
+    .neon-bg { position: fixed; inset: 0; background: radial-gradient(ellipse at 20% 30%, rgba(255, 16, 240, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(0, 245, 255, 0.15) 0%, transparent 50%); pointer-events: none; z-index: 0; }
+    .container { max-width: 720px; margin: 0 auto; padding: 32px 24px; position: relative; z-index: 1; }
+    .back-link { color: var(--neon-cyan); text-decoration: none; font-weight: 600; margin-bottom: 24px; display: inline-block; transition: opacity 0.3s; }
+    .back-link:hover { opacity: 0.8; }
+    .page-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; margin-bottom: 8px; background: var(--oil-slick); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-subtitle { color: var(--text-silver); font-size: 14px; margin-bottom: 40px; }
+    .spec-card { background: rgba(18, 18, 26, 0.8); backdrop-filter: blur(20px); border: 2px solid rgba(255, 16, 240, 0.2); border-radius: 24px; padding: 40px; margin-bottom: 24px; }
+    .spec-card:hover { border-color: rgba(0, 245, 255, 0.4); box-shadow: 0 0 40px rgba(0, 245, 255, 0.2); }
+    .spec-card h2 { font-size: 18px; margin-bottom: 24px; color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 0.1em; }
+    .spec-card h3 { font-size: 14px; margin: 20px 0 12px; color: var(--neon-purple); }
+    .spec-card p, .spec-card li { color: var(--text-silver); font-size: 14px; line-height: 1.7; margin-bottom: 12px; }
+    .spec-card ul { margin-left: 24px; margin-bottom: 16px; }
+    .spec-card table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+    .spec-card th, .spec-card td { padding: 10px 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .spec-card th { color: var(--neon-cyan); font-weight: 600; }
+    .spec-card td { color: var(--text-silver); }
+    .spec-card code { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--neon-lime); background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 4px; }
+    .spec-card .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-gray); }
+    .download-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border: 2px solid var(--neon-cyan); border-radius: 12px; color: var(--neon-cyan); text-decoration: none; font-weight: 700; cursor: pointer; transition: all 0.3s; margin-bottom: 24px; }
+    .download-btn:hover { background: rgba(0, 245, 255, 0.1); transform: translateY(-2px); }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-left: 8px; }
+    .badge-argon { background: rgba(0, 245, 255, 0.2); color: var(--neon-cyan); }
+    .badge-aes { background: rgba(57, 255, 20, 0.2); color: var(--neon-lime); }
+    .badge-shamir { background: rgba(182, 36, 255, 0.2); color: var(--neon-purple); }
+  </style>
+</head>
+<body>
+  <div class="neon-bg"></div>
+  <div class="container">
+    <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+    <h1 class="page-title">Security & Cryptography</h1>
+    <p class="page-subtitle">Full transparency. Our cryptographic specification is published for audit and verification.</p>
+
+    <a href="/docs/CRYPTOGRAPHIC-SPECIFICATION.md" download="CRYPTOGRAPHIC-SPECIFICATION.md" class="download-btn">📄 Download Full Spec (Markdown)</a>
+
+    <div class="spec-card">
+      <h2>1. Overview</h2>
+      <p>Server-side encryption with industry-standard algorithms:</p>
+      <ul>
+        <li><strong>Password hashing:</strong> <span class="badge badge-argon">Argon2id</span> — 64 MiB memory, 3 iterations</li>
+        <li><strong>Vault encryption:</strong> <span class="badge badge-aes">AES-256-GCM</span> — authenticated encryption</li>
+        <li><strong>Recovery:</strong> <span class="badge badge-shamir">Shamir 2-of-3</span> — any 2 shards reconstruct</li>
+        <li><strong>Shard protection:</strong> PBKDF2 (100k) + AES-256-GCM, client-side</li>
+      </ul>
+      <p>This is not zero-knowledge. The server performs key derivation and decryption. Passwords and plaintext are never stored.</p>
+    </div>
+
+    <div class="spec-card">
+      <h2>2. Vault Encryption</h2>
+      <h3>Key Derivation (Argon2id)</h3>
+      <table>
+        <tr><th>Parameter</th><th>Value</th></tr>
+        <tr><td>Memory cost</td><td>65,536 KiB</td></tr>
+        <tr><td>Time cost</td><td>3 iterations</td></tr>
+        <tr><td>Hash length</td><td>32 bytes</td></tr>
+        <tr><td>Salt</td><td>32 bytes, random</td></tr>
+      </table>
+      <h3>Vault Encryption (AES-256-GCM)</h3>
+      <table>
+        <tr><th>Parameter</th><th>Value</th></tr>
+        <tr><td>Key size</td><td>256 bits</td></tr>
+        <tr><td>IV</td><td>16 bytes, random per encryption</td></tr>
+        <tr><td>Auth tag</td><td>16 bytes</td></tr>
+      </table>
+    </div>
+
+    <div class="spec-card">
+      <h2>3. Shamir Recovery</h2>
+      <table>
+        <tr><th>Parameter</th><th>Value</th></tr>
+        <tr><td>Shares</td><td>3</td></tr>
+        <tr><td>Threshold</td><td>2</td></tr>
+        <tr><td>Secret</td><td>Vault password</td></tr>
+      </table>
+      <p>Any 2 of 3 shards can reconstruct the password. Shards may be PIN-encrypted in localStorage.</p>
+    </div>
+
+    <div class="spec-card">
+      <h2>4. Rate Limiting</h2>
+      <h3>Unlock</h3>
+      <table>
+        <tr><th>Limit</th><th>Value</th></tr>
+        <tr><td>Attempts per vault</td><td>10 per hour</td></tr>
+        <tr><td>Murder threshold</td><td>33 → lockjaw</td></tr>
+        <tr><td>Constant-time on failure</td><td>5 seconds</td></tr>
+      </table>
+      <h3>Recovery</h3>
+      <table>
+        <tr><th>Limit</th><th>Value</th></tr>
+        <tr><td>Per IP</td><td>10 per hour</td></tr>
+        <tr><td>Per vault</td><td>5 per hour</td></tr>
+        <tr><td>Block duration</td><td>24 hours</td></tr>
+      </table>
+    </div>
+
+    <div class="spec-card">
+      <h2>5. Session Tokens</h2>
+      <p>Recovery returns <code>{ sessionToken, vaultId }</code> only. Password and contents are never in HTTP responses. Client exchanges token for contents via unlock API.</p>
+    </div>
+
+    <div class="spec-card">
+      <h2>6. Verification</h2>
+      <p>To verify the implementation:</p>
+      <ul>
+        <li><code>lib/recovery.js</code> — Argon2id, AES-GCM, Shamir</li>
+        <li><code>app/js/shard-protection.js</code> — PBKDF2, AES-GCM</li>
+        <li><code>api/unlock-vault.js</code> — Rate limits, session tokens</li>
+        <li>Browser DevTools Network tab — passwords never in responses</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

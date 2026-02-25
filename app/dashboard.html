@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Vault Manager | The Murderer's Lock</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-void: #000000;
+      --bg-deep: #0A0A0F;
+      --bg-card: #12121A;
+      --neon-pink: #FF10F0;
+      --neon-cyan: #00F5FF;
+      --neon-purple: #B624FF;
+      --neon-gold: #FFD700;
+      --neon-lime: #39FF14;
+      --neon-orange: #FF6600;
+      --oil-slick: linear-gradient(135deg, #FF10F0 0%, #B624FF 15%, #00F5FF 30%, #39FF14 45%, #FFD700 60%, #FF6600 75%, #FF10F0 100%);
+      --text-white: #FFFFFF;
+      --text-silver: #E0E0E0;
+      --text-gray: #808080;
+    }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-void);
+      color: var(--text-white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .neon-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 30%, rgba(255, 16, 240, 0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 70%, rgba(0, 245, 255, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      position: relative;
+      z-index: 1;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255, 16, 240, 0.2);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 900;
+      background: var(--oil-slick);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .user-email {
+      font-size: 14px;
+      color: var(--text-gray);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .btn {
+      padding: 12px 24px;
+      border: 2px solid;
+      border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: rgba(0, 245, 255, 0.1);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+    }
+    .btn-primary:hover {
+      background: rgba(0, 245, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(0, 245, 255, 0.6);
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--neon-pink);
+      color: var(--neon-pink);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 16, 240, 0.1);
+      transform: translateY(-2px);
+    }
+    .back-link {
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 24px;
+      display: inline-block;
+      transition: opacity 0.3s;
+    }
+    .back-link:hover { opacity: 0.8; }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 900;
+      margin: 32px 0 16px;
+      background: var(--oil-slick);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-subtitle {
+      color: var(--text-silver);
+      font-size: 14px;
+      margin-bottom: 40px;
+    }
+    .create-vault-card {
+      background: rgba(18, 18, 26, 0.8);
+      backdrop-filter: blur(20px);
+      border: 2px dashed rgba(255, 16, 240, 0.4);
+      border-radius: 20px;
+      padding: 48px;
+      text-align: center;
+      margin-bottom: 48px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .create-vault-card:hover {
+      border-color: var(--neon-cyan);
+      border-style: solid;
+      box-shadow: 0 0 40px rgba(0, 245, 255, 0.2);
+    }
+    .create-vault-card .icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+    .create-vault-card h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .create-vault-card p {
+      color: var(--text-silver);
+      font-size: 14px;
+    }
+    .vaults-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .vault-card {
+      background: rgba(18, 18, 26, 0.8);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 16, 240, 0.2);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .vault-card:hover {
+      border-color: var(--neon-cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(0, 245, 255, 0.3);
+    }
+    .vault-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      background: rgba(0, 245, 255, 0.1);
+      border: 2px solid var(--neon-cyan);
+    }
+    .vault-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .vault-meta {
+      font-size: 12px;
+      color: var(--text-gray);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 16px;
+    }
+    .vault-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .vault-status.locked {
+      background: rgba(255, 16, 240, 0.1);
+      border: 2px solid var(--neon-pink);
+      color: var(--neon-pink);
+    }
+    .vault-status.unlocked {
+      background: rgba(57, 255, 20, 0.1);
+      border: 2px solid var(--neon-lime);
+      color: var(--neon-lime);
+    }
+    .empty-state {
+      text-align: center;
+      padding: 80px 24px;
+      color: var(--text-gray);
+    }
+    .empty-state .icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="neon-bg"></div>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Login</a>
+    <header>
+      <div class="logo">VAULT MANAGER</div>
+      <div class="nav-right">
+        <span class="user-email" id="user-email">—</span>
+        <a href="security.html" class="btn btn-secondary">Security</a>
+        <a href="dms.html" class="btn btn-secondary">Dead Man's Switch</a>
+        <a href="settings.html" class="btn btn-secondary">Settings</a>
+        <a href="index.html" class="btn btn-secondary">Logout</a>
+      </div>
+    </header>
+
+    <h1 class="page-title">Your Vaults</h1>
+    <p class="page-subtitle">Create vaults to store encrypted secrets. Each vault is protected by 33-gate encryption.</p>
+
+    <div id="dms-banner" style="display: none; background: rgba(18, 18, 26, 0.9); border: 2px solid var(--neon-gold); border-radius: 16px; padding: 20px 24px; margin-bottom: 32px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div id="dms-banner-title" style="font-weight: 700; font-size: 16px; margin-bottom: 4px; color: var(--neon-gold);">—</div>
+        <div id="dms-banner-text" style="color: var(--text-silver); font-size: 14px;">—</div>
+      </div>
+      <a href="dms.html" id="dms-banner-btn" class="btn btn-primary" style="margin: 0;">Check In Now</a>
+    </div>
+
+    <div class="create-vault-card" id="create-vault-btn">
+      <div class="icon">🔐</div>
+      <h3>Create New Vault</h3>
+      <p>Add a new encrypted vault with Argon2id + AES-256-GCM</p>
+    </div>
+
+    <div class="vaults-grid" id="vaults-grid">
+      <!-- Vaults populated by JS -->
+    </div>
+
+    <div class="empty-state" id="empty-state" style="display: none;">
+      <div class="icon">🔒</div>
+      <div>No vaults yet. Create your first vault above.</div>
+    </div>
+  </div>
+
+  <!-- PIN Modal: Set (first vault) or Enter (existing PIN) -->
+  <div id="pin-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 101; align-items: center; justify-content: center; padding: 24px;">
+    <div style="background:rgba(18,18,26,0.98); border: 2px solid var(--neon-purple); border-radius: 24px; padding: 48px; max-width: 440px; width: 100%;">
+      <h3 id="pin-modal-title" style="font-size: 24px; margin-bottom: 16px; color: var(--neon-purple);">🔐 Shard Protection PIN</h3>
+      <p id="pin-modal-desc" style="color: var(--text-silver); font-size: 14px; margin-bottom: 24px;">Encrypt your recovery shards with a PIN. If your device is stolen, shards are useless without the PIN.</p>
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--neon-purple); margin-bottom: 8px;">PIN (4+ digits)</label>
+        <input type="password" inputmode="numeric" pattern="[0-9]*" id="pin-input" placeholder="••••" maxlength="12"
+          style="width: 100%; padding: 16px; background: rgba(0,0,0,0.5); border: 2px solid rgba(182,36,255,0.3); border-radius: 12px; color: white; font-size: 18px; letter-spacing: 0.3em;">
+      </div>
+      <div id="pin-actions" style="display: flex; gap: 12px;">
+        <button type="button" class="btn btn-secondary" id="pin-skip" style="flex: 1;">Skip (store plain)</button>
+        <button type="button" class="btn btn-primary" id="pin-set" style="flex: 1; border-color: var(--neon-purple); color: var(--neon-purple);">Set PIN</button>
+      </div>
+      <div id="pin-enter-actions" style="display: none;">
+        <button type="button" class="btn btn-primary" id="pin-enter" style="width: 100%; border-color: var(--neon-purple); color: var(--neon-purple);">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Vault Modal -->
+  <div id="create-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; align-items: center; justify-content: center; padding: 24px;">
+    <div style="background:rgba(18,18,26,0.95); border: 2px solid var(--neon-cyan); border-radius: 24px; padding: 48px; max-width: 440px; width: 100%;">
+      <h3 style="font-size: 24px; margin-bottom: 24px; color: var(--neon-cyan);">Create New Vault</h3>
+      <div id="create-form-step">
+        <form id="create-vault-form">
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--neon-cyan); margin-bottom: 8px;">Vault Name</label>
+            <input type="text" id="vault-name" placeholder="e.g. Crypto Keys" required
+              style="width: 100%; padding: 16px; background: rgba(0,0,0,0.5); border: 2px solid rgba(255,16,240,0.3); border-radius: 12px; color: white; font-size: 16px;">
+          </div>
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--neon-cyan); margin-bottom: 8px;">Vault Password</label>
+            <input type="password" id="vault-password" placeholder="Min 12 characters" required minlength="12"
+              style="width: 100%; padding: 16px; background: rgba(0,0,0,0.5); border: 2px solid rgba(255,16,240,0.3); border-radius: 12px; color: white; font-size: 16px;">
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <button type="button" class="btn btn-secondary" id="cancel-create" style="flex: 1;">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="create-submit-btn" style="flex: 1;">Create Vault</button>
+          </div>
+        </form>
+      </div>
+      <div id="shards-step" style="display: none;">
+        <p style="color: var(--neon-lime); margin-bottom: 16px;">✓ Vault created. Save these 3 Shamir shards securely. You need any 2 to recover.</p>
+        <div class="shard-box" id="modal-shard-1" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 12px; background: rgba(0,0,0,0.6); border: 2px solid var(--neon-purple); border-radius: 12px; color: var(--text-silver); word-break: break-all; margin-bottom: 12px;"></div>
+        <div class="shard-box" id="modal-shard-2" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 12px; background: rgba(0,0,0,0.6); border: 2px solid var(--neon-purple); border-radius: 12px; color: var(--text-silver); word-break: break-all; margin-bottom: 12px;"></div>
+        <div class="shard-box" id="modal-shard-3" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 12px; background: rgba(0,0,0,0.6); border: 2px solid var(--neon-purple); border-radius: 12px; color: var(--text-silver); word-break: break-all; margin-bottom: 12px;"></div>
+        <button type="button" class="btn btn-primary" id="shards-done" style="width: 100%;">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/validate.js"></script>
+  <script src="js/shard-protection.js"></script>
+  <script>
+    const VAULTS_KEY = 'vault_manager_vaults';
+
+    function getVaults() {
+      return JSON.parse(localStorage.getItem(VAULTS_KEY) || '[]');
+    }
+
+    function saveVaults(vaults) {
+      localStorage.setItem(VAULTS_KEY, JSON.stringify(vaults));
+    }
+
+    function renderVaults() {
+      const grid = document.getElementById('vaults-grid');
+      const empty = document.getElementById('empty-state');
+      const vaults = getVaults();
+      grid.innerHTML = '';
+
+      if (vaults.length === 0) {
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      vaults.forEach((v, i) => {
+        const card = document.createElement('a');
+        card.href = `vault.html?id=${v.id}`;
+        card.className = 'vault-card';
+        const murderInfo = (v.murderCount > 0 || v.lockjawEngaged) ? `
+          <div style="margin-top: 12px; font-size: 11px; color: var(--neon-orange);">
+            ${v.lockjawEngaged ? '🚨 LOCKJAW ENGAGED' : `⚠️ Murder count: ${v.murderCount || 0}/33`}
+          </div>
+        ` : '';
+        card.innerHTML = `
+          <div class="vault-icon">🔒</div>
+          <div class="vault-name">${escapeHtml(v.name)}</div>
+          <div class="vault-meta">ID: ${v.id.slice(0, 8)}...</div>
+          <span class="vault-status ${v.locked !== false ? 'locked' : 'unlocked'}">${v.locked !== false ? '🔒 Locked' : '🔓 Unlocked'}</span>
+          ${murderInfo}
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function escapeHtml(s) {
+      const div = document.createElement('div');
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    // Auth check
+    const user = sessionStorage.getItem('vault_user');
+    if (!user) {
+      window.location.href = 'index.html';
+    }
+    const profile = JSON.parse(localStorage.getItem('vault_manager_profile') || '{}');
+    document.getElementById('user-email').textContent = profile.displayName || user;
+
+    function updateDMSBanner() {
+      const dms = JSON.parse(localStorage.getItem('vault_manager_dms') || '{}');
+      const banner = document.getElementById('dms-banner');
+      if (!dms.enabled) {
+        banner.style.display = 'none';
+        return;
+      }
+      const lastCheckIn = dms.lastCheckIn ? new Date(dms.lastCheckIn) : null;
+      const intervalDays = dms.intervalDays || 7;
+      const graceDays = dms.graceDays || 5;
+      const dueDate = lastCheckIn ? new Date(lastCheckIn.getTime() + intervalDays * 24 * 60 * 60 * 1000) : new Date();
+      const graceEnd = new Date(dueDate.getTime() + graceDays * 24 * 60 * 60 * 1000);
+      const now = new Date();
+
+      if (!lastCheckIn || now > dueDate) {
+        banner.style.display = 'flex';
+        const title = document.getElementById('dms-banner-title');
+        const text = document.getElementById('dms-banner-text');
+        const btn = document.getElementById('dms-banner-btn');
+        if (now > graceEnd) {
+          title.textContent = '🚨 DEAD MAN\'S SWITCH: OVERDUE';
+          text.textContent = 'Contacts would be notified. Check in now to reset.';
+          banner.style.borderColor = 'var(--neon-orange)';
+          title.style.color = 'var(--neon-orange)';
+        } else if (now > dueDate) {
+          const daysLeft = Math.ceil((graceEnd - now) / (24 * 60 * 60 * 1000));
+          title.textContent = '⚠️ Check-in overdue';
+          text.textContent = daysLeft + ' day(s) until contacts are notified. Check in now.';
+          banner.style.borderColor = 'var(--neon-gold)';
+          title.style.color = 'var(--neon-gold)';
+        } else {
+          title.textContent = 'Dead Man\'s Switch: First check-in needed';
+          text.textContent = 'Check in now to start your interval.';
+          banner.style.borderColor = 'var(--neon-gold)';
+          title.style.color = 'var(--neon-gold)';
+        }
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+    updateDMSBanner();
+
+    if (typeof document !== 'undefined') {
+      document.getElementById('create-vault-btn').addEventListener('click', () => {
+        if (typeof ShardProtection === 'undefined') {
+          document.getElementById('create-modal').style.display = 'flex';
+          return;
+        }
+        if (!ShardProtection.hasPin() && getVaults().length === 0) {
+          document.getElementById('pin-modal-title').textContent = '🔐 Shard Protection PIN';
+          document.getElementById('pin-modal-desc').textContent = 'Encrypt your recovery shards with a PIN. If your device is stolen, shards are useless without the PIN.';
+          document.getElementById('pin-actions').style.display = 'flex';
+          document.getElementById('pin-enter-actions').style.display = 'none';
+          document.getElementById('pin-modal').style.display = 'flex';
+          document.getElementById('pin-input').value = '';
+        } else if (ShardProtection.hasPin()) {
+          document.getElementById('pin-modal-title').textContent = 'Enter PIN';
+          document.getElementById('pin-modal-desc').textContent = 'Enter your shard protection PIN to encrypt new vault shards.';
+          document.getElementById('pin-actions').style.display = 'none';
+          document.getElementById('pin-enter-actions').style.display = 'flex';
+          document.getElementById('pin-modal').style.display = 'flex';
+          document.getElementById('pin-input').value = '';
+        } else {
+          document.getElementById('create-modal').style.display = 'flex';
+        }
+      });
+
+      document.getElementById('pin-set')?.addEventListener('click', async () => {
+        const pin = document.getElementById('pin-input').value;
+        if (!pin || pin.length < 4) { alert('PIN must be at least 4 digits'); return; }
+        try {
+          await ShardProtection.setPin(pin);
+          sessionStorage.setItem('vault_shard_pin_temp', pin);
+          document.getElementById('pin-modal').style.display = 'none';
+          document.getElementById('create-modal').style.display = 'flex';
+        } catch (e) { alert(e.message || 'Failed to set PIN'); }
+      });
+
+      document.getElementById('pin-skip')?.addEventListener('click', () => {
+        document.getElementById('pin-modal').style.display = 'none';
+        document.getElementById('create-modal').style.display = 'flex';
+      });
+
+      document.getElementById('pin-enter')?.addEventListener('click', async () => {
+        const pin = document.getElementById('pin-input').value;
+        if (!pin) { alert('Enter your PIN'); return; }
+        try {
+          const ok = await ShardProtection.verifyPin(pin);
+          if (!ok) { alert('Incorrect PIN'); return; }
+          sessionStorage.setItem('vault_shard_pin_temp', pin);
+          document.getElementById('pin-modal').style.display = 'none';
+          document.getElementById('create-modal').style.display = 'flex';
+        } catch (e) { alert(e.message || 'PIN verification failed'); }
+      });
+
+
+      document.getElementById('cancel-create').addEventListener('click', () => {
+        document.getElementById('create-modal').style.display = 'none';
+      });
+
+      document.getElementById('create-vault-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('vault-name').value.trim();
+        const password = document.getElementById('vault-password').value;
+        if (!name) return;
+        if (typeof Validate !== 'undefined') {
+          const pwCheck = Validate.validatePassword(password);
+          if (!pwCheck.valid) {
+            alert((pwCheck.errors && pwCheck.errors[0]) || 'Invalid password.');
+            return;
+          }
+        } else if (!password || password.length < 12) return;
+
+        const btn = document.getElementById('create-submit-btn');
+        btn.disabled = true;
+        btn.textContent = 'Creating...';
+
+        try {
+          const res = await fetch('/api/create-vault', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, password })
+          });
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw new Error(data.error || 'Failed to create vault');
+          }
+
+          const { vaultId, salt, encryptedData, iv, shards } = data;
+
+          const vaults = getVaults();
+          vaults.push({
+            id: vaultId,
+            name,
+            locked: true,
+            salt,
+            iv,
+            encryptedData,
+            createdAt: new Date().toISOString()
+          });
+          saveVaults(vaults);
+
+          localStorage.setItem('vault_data_' + vaultId, JSON.stringify({ salt, iv, encryptedData }));
+
+          document.getElementById('create-form-step').style.display = 'none';
+          document.getElementById('shards-step').style.display = 'block';
+          document.getElementById('modal-shard-1').textContent = shards[0];
+          document.getElementById('modal-shard-2').textContent = shards[1];
+          document.getElementById('modal-shard-3').textContent = shards[2];
+
+          if (vaultId) {
+            const pin = sessionStorage.getItem('vault_shard_pin_temp');
+            if (typeof ShardProtection !== 'undefined' && ShardProtection.hasPin() && pin) {
+              try {
+                const encrypted = await ShardProtection.encryptShards(shards, pin);
+                localStorage.setItem('vault_shards_' + vaultId, JSON.stringify(encrypted));
+              } catch (e) {
+                localStorage.setItem('vault_shards_' + vaultId, JSON.stringify(shards));
+              }
+              sessionStorage.removeItem('vault_shard_pin_temp');
+            } else {
+              localStorage.setItem('vault_shards_' + vaultId, JSON.stringify(shards));
+            }
+          }
+        } catch (err) {
+          alert(err.message || 'Failed to create vault');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Create Vault';
+        }
+      });
+
+      document.getElementById('shards-done').addEventListener('click', () => {
+        document.getElementById('create-modal').style.display = 'none';
+        document.getElementById('create-form-step').style.display = 'block';
+        document.getElementById('shards-step').style.display = 'none';
+        document.getElementById('vault-name').value = '';
+        document.getElementById('vault-password').value = '';
+        renderVaults();
+      });
+
+      document.getElementById('cancel-create').addEventListener('click', () => {
+        document.getElementById('create-modal').style.display = 'none';
+        document.getElementById('create-form-step').style.display = 'block';
+        document.getElementById('shards-step').style.display = 'none';
+      });
+    }
+
+    renderVaults();
+  </script>
+</body>
+</html>

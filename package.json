@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "The Murderer's Lock - Investor Demo",
   "private": true,
-  "type": "module",
   "dependencies": {
-    "secrets.js-grempe": "^2.0.0",
-    "argon2": "^0.31.2"
+    "argon2": "^0.44.0",
+    "shamirs-secret-sharing": "^2.0.1"
   }
 }

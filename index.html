@@ -718,7 +718,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <h1 class="hero-title">QUANTUM-RESISTANT<br>SECURITY VAULT</h1>
-      <p class="hero-subtitle">Military-grade encryption meets zero-knowledge architecture. Protect your digital assets with cryptography that murders unauthorized access.</p>
+      <p class="hero-subtitle">Server-side encryption with Argon2id + AES-256-GCM. Shamir 2-of-3 recovery. Rate-limited access control.</p>
       
       <div class="hero-cta">
         <a href="#demo" class="btn btn-primary">⚡ Try Live Demo</a>
@@ -758,13 +758,13 @@
         <div class="step-card">
           <div class="step-number">01</div>
           <h3 class="step-title">Create Your Vault</h3>
-          <p class="step-desc">Set a master password. We derive your encryption key with Argon2id—we never see it. Add files, keys, or secrets.</p>
+          <p class="step-desc">Set a master password. Server derives your encryption key with Argon2id. Add files, keys, or secrets.</p>
         </div>
         <div class="step-arrow">→</div>
         <div class="step-card">
           <div class="step-number">02</div>
-          <h3 class="step-title">33 Gates Protect It</h3>
-          <p class="step-desc">Each unlock requires passing 33 frequency gates. Wrong frequency? Murder blade triggers. Three failures? Lockjaw freezes access.</p>
+          <h3 class="step-title">Rate-Limited Access</h3>
+          <p class="step-desc">33 failed attempts trigger lockjaw (permanent lock until Shamir recovery). Real security: Argon2id + rate limiting. 33 gates in demo are visual only.</p>
         </div>
         <div class="step-arrow">→</div>
         <div class="step-card">
@@ -787,8 +787,8 @@
         
         <div class="feature-card">
           <div class="feature-icon">🔐</div>
-          <h3 class="feature-title">Zero-Knowledge</h3>
-          <p class="feature-desc">We never see your keys or data. Everything encrypted client-side with Argon2id key derivation.</p>
+          <h3 class="feature-title">Server-Side Encryption</h3>
+          <p class="feature-desc">Argon2id key derivation and AES-256-GCM encryption. Same algorithms used by 1Password and industry leaders.</p>
         </div>
         
         <div class="feature-card">
@@ -923,7 +923,7 @@
       <div class="social-proof">
         <div class="badge-item">🛡️ AES-256-GCM Certified</div>
         <div class="badge-item">🔐 Argon2id Memory-Hard</div>
-        <div class="badge-item">⚡ Zero-Knowledge Architecture</div>
+        <div class="badge-item">⚡ Argon2id + AES-256-GCM</div>
         <div class="badge-item">📜 Patent Pending</div>
       </div>
       <div style="margin-top: 48px;">
@@ -973,11 +973,12 @@
     <!-- Live Demo Section -->
     <section id="demo" class="section">
       <h2 class="section-title">Interactive Demo</h2>
-      <p style="text-align: center; color: var(--text-silver); margin-bottom: 48px;">Experience the 33-gate security mechanism. Click "Generate Unlock Proof" to see it in action.</p>
-      <div style="text-align: center;">
-        <a href="demo.html" class="btn btn-primary" style="font-size: 20px; padding: 24px 48px;">🚀 Launch Full Demo</a>
-        <p style="margin-top: 24px; color: var(--text-gray); font-size: 14px;">No signup required • Try the 33-gate lock now</p>
+      <p style="text-align: center; color: var(--text-silver); margin-bottom: 48px;">Experience the 33-gate security mechanism. Or manage your own encrypted vaults.</p>
+      <div style="text-align: center; display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;">
+        <a href="demo.html" class="btn btn-primary" style="font-size: 20px; padding: 24px 48px;">🚀 Launch 33-Gate Demo</a>
+        <a href="app/index.html" class="btn btn-secondary" style="font-size: 20px; padding: 24px 48px;">🔐 Vault Manager</a>
       </div>
+      <p style="margin-top: 24px; color: var(--text-gray); font-size: 14px; text-align: center;">No signup required • Create vaults • Shamir recovery</p>
     </section>
     
     <!-- Pricing Section -->
