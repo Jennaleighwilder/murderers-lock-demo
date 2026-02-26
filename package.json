@@ -3,8 +3,49 @@
   "version": "1.0.0",
   "description": "The Murderer's Lock - Investor Demo",
   "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "generate-test-data": "node scripts/generate-test-data.js",
+    "test": "node test/test-suite.js && node test/core-invariants.test.js && node test/webauthn-invariants.test.js && node test/webauthn-origin-invariants.test.js && node test/fail-closed-invariants.test.js",
+    "test:stress": "node test/stress-test.js 10",
+    "test:security": "node test/security-test.js",
+    "test:security:stress": "for i in 1 2 3 4 5; do echo '=== Run $i ==='; npm run test:security:full || exit 1; done",
+    "test:security:full": "bash scripts/run-security-test.sh",
+    "test:harm-barriers": "node test/harm-barriers-test.js",
+    "test:red-team": "bash scripts/run-red-team.sh",
+    "test:redteam": "node test/redteam/run-redteam.js",
+    "test:webauthn": "playwright test test/webauthn",
+    "test:red-team:network": "TEST_FAST=1 API_BASE=https://murderers-lock-demo.vercel.app node test/red-team-test.js",
+    "test:unit": "for f in test/unit/*.test.js; do node \"$f\" || exit 1; done",
+    "test:integration": "node test/integration/barriers-integration.test.js",
+    "test:compliance": "node test/compliance/soc2.test.js && node test/compliance/gdpr.test.js",
+    "test:security:owasp": "node test/security/owasp.test.js",
+    "test:load": "node test/real-world/load.test.js",
+    "test:load:full": "LOAD_FULL=1 node test/real-world/load.test.js",
+    "test:chaos": "node test/real-world/chaos.test.js",
+    "test:disaster-recovery": "node test/real-world/disaster-recovery.test.js",
+    "test:e2e": "node test/e2e/breach-scenario.test.js",
+    "test:all": "bash scripts/run-all-tests.sh",
+    "measure:argon2": "node scripts/measure-argon2-cost.js",
+    "audit:ci": "npm audit --audit-level=high",
+    "audit:strict": "npm audit --audit-level=moderate",
+    "sbom": "npx @cyclonedx/cyclonedx-npm --output-file sbom.json",
+    "build-provenance": "node scripts/build-provenance.js",
+    "verify:prod-security": "bash scripts/verify-prod-security.sh",
+    "verify:secrets": "node scripts/verify-secrets.js",
+    "audit:bundle": "node scripts/audit-bundle.js"
+  },
   "dependencies": {
-    "argon2": "^0.44.0",
-    "shamirs-secret-sharing": "^2.0.1"
+    "@simplewebauthn/browser": "13.2.2",
+    "@simplewebauthn/server": "13.2.3",
+    "@supabase/supabase-js": "2.97.0",
+    "argon2": "0.44.0",
+    "otplib": "13.3.0",
+    "qrcode": "^1.5.4",
+    "shamirs-secret-sharing": "^2.0.1",
+    "stripe": "^20.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
   }
 }

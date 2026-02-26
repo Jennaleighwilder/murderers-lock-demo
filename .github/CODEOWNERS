@@ -1,0 +1,4 @@
+# PRs that change package.json or lockfile require approval
+# Replace with your team: @your-org/security-team or @username
+package.json @
+package-lock.json @

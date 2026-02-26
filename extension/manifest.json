@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "The Murderer's Lock",
+  "version": "1.0.0",
+  "description": "Auto-fill passwords from your Murderer's Lock vault. 33 Gates • Zero-Knowledge.",
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": ["<all_urls>", "http://localhost:*/*", "https://*/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
+    "default_title": "The Murderer's Lock"
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "murderers-lock@murdererslock.app",
+      "strict_min_version": "109.0"
+    }
+  }
+}

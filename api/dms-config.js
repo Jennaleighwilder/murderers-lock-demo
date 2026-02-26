@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
   const userId = (req.body || req.query || {}).userId || 'default';
 
   if (req.method === 'GET') {
-    const rec = dmsStore.get(userId);
+    const rec = await dmsStore.get(userId);
     return res.status(200).json(rec);
   }
 
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     if (typeof intervalDays === 'number') updates.intervalDays = intervalDays;
     if (typeof graceDays === 'number') updates.graceDays = graceDays;
     if (Array.isArray(contacts)) updates.contacts = contacts;
-    const rec = dmsStore.set(userId, updates);
+    const rec = await dmsStore.set(userId, updates);
     return res.status(200).json({ success: true, ...rec });
   }
 

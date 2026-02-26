@@ -1,9 +1,13 @@
 /**
  * POST /api/create-vault
- * Create new vault with Argon2id + AES-256-GCM + Shamir 2-of-3 shards
+ * Create new vault: Nanosecond Lock (33 Gates + timestamp) or legacy Argon2id
  */
 
-const { createVault } = require('../lib/recovery.js');
+const { createVault, splitSecret } = require('../lib/recovery.js');
+const auditStore = require('./audit-store.js');
+const { lock } = require('../lib/nanosecond-lock-production.js');
+const crypto = require('crypto');
+const { validatePassword, validateName } = require('./input-validation.js');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,15 +23,34 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { name, password } = req.body || {};
-    if (!name || !password || typeof name !== 'string' || typeof password !== 'string') {
-      return res.status(400).json({ error: 'Name and password required' });
-    }
-    if (password.length < 12) {
-      return res.status(400).json({ error: 'Password must be at least 12 characters' });
+    const { name, password, useNanosecond } = req.body || {};
+    const nameV = validateName(name);
+    if (!nameV.valid) return res.status(400).json({ error: nameV.error });
+    const pw = validatePassword(password);
+    if (!pw.valid) return res.status(400).json({ error: pw.error });
+
+    if (useNanosecond) {
+      const payload = JSON.stringify({ secrets: '' });
+      const locked = await lock(pw.value, payload);
+      const vaultId = 'v_' + Date.now() + '_' + crypto.randomBytes(4).toString('hex');
+      const shards = splitSecret(password);
+      await auditStore.append(vaultId, { action: 'create', success: true, name: nameV.value });
+
+      return res.status(200).json({
+        success: true,
+        vaultId,
+        name: nameV.value,
+        salt: locked.salt,
+        encryptedData: locked.encryptedData,
+        iv: locked.iv,
+        timestamp: locked.timestamp,
+        shards,
+        gates: locked.gates
+      });
     }
 
-    const result = await createVault(name.trim(), password, '');
+    const result = await createVault(nameV.value, pw.value, '');
+    await auditStore.append(result.vaultId, { action: 'create', success: true, name: result.name });
 
     return res.status(200).json({
       success: true,

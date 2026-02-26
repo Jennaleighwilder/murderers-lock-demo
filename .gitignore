@@ -1,1 +1,9 @@
 .vercel
+node_modules
+.env
+.env.*
+!.env.example
+sbom.json
+build-manifest.json
+artifacts/redteam/
+artifacts/audit/

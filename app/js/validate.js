@@ -62,6 +62,10 @@ const Validate = {
     const errors = [];
     if (!pw || pw.length < 12) errors.push('Password must be at least 12 characters');
     if (pw && pw.length > 128) errors.push('Password too long');
+    if (typeof PasswordStrength !== 'undefined') {
+      const s = PasswordStrength.score(pw);
+      if (s.score < 2) errors.push('Use a stronger password (mix case, numbers, symbols)');
+    }
     return { valid: errors.length === 0, errors };
   },
 

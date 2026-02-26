@@ -1,0 +1,73 @@
+# Supply-chain ship gate — run before deploy
+name: CI
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+jobs:
+  ship-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+      - run: npm run verify:prod-security
+      - run: npm run verify:secrets
+      - run: npm run audit:ci
+      - run: npm run sbom
+      - run: npm run build-provenance
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: sbom
+          path: sbom.json
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: build-manifest
+          path: build-manifest.json
+
+  # Red-team: runs when REDTEAM_VAULT_ID + REDTEAM_PASSWORD secrets are set
+  redteam:
+    runs-on: ubuntu-latest
+    needs: ship-gate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run test:redteam
+        env:
+          REDTEAM_MODE: lite
+          REDTEAM_BASE_URL: ${{ secrets.REDTEAM_BASE_URL || 'https://murderers-lock-demo.vercel.app' }}
+          REDTEAM_VAULT_ID: ${{ secrets.REDTEAM_VAULT_ID }}
+          REDTEAM_PASSWORD: ${{ secrets.REDTEAM_PASSWORD }}
+          REDTEAM_SUPABASE_ON: 'true'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: redteam-report
+          path: artifacts/redteam/
+          if-no-files-found: ignore
+
+  webauthn-e2e:
+    runs-on: ubuntu-latest
+    needs: ship-gate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:webauthn
+        env:
+          WEBAUTHN_BASE_URL: ${{ secrets.REDTEAM_BASE_URL || 'https://murderers-lock-demo.vercel.app' }}

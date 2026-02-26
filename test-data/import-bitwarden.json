@@ -1,0 +1,1435 @@
+{
+  "encrypted": false,
+  "items": [
+    {
+      "type": 1,
+      "name": "weak.com",
+      "login": {
+        "username": "weak@test.com",
+        "password": "123",
+        "uris": [
+          {
+            "uri": "https://weak.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "weak2.com",
+      "login": {
+        "username": "",
+        "password": "password",
+        "uris": [
+          {
+            "uri": "https://weak2.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "weak3.com",
+      "login": {
+        "username": "a",
+        "password": "a",
+        "uris": [
+          {
+            "uri": "https://weak3.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "duplicate.com",
+      "login": {
+        "username": "dup@test.com",
+        "password": "SamePass123!",
+        "uris": [
+          {
+            "uri": "https://duplicate.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "duplicate2.com",
+      "login": {
+        "username": "dup2@test.com",
+        "password": "SamePass123!",
+        "uris": [
+          {
+            "uri": "https://duplicate2.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "special.com",
+      "login": {
+        "username": "special@test.com",
+        "password": "!@#$%^&*()_+-=[]{}|;:'\",.<>?",
+        "uris": [
+          {
+            "uri": "https://special.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "unicode.com",
+      "login": {
+        "username": "你好@test.com",
+        "password": "你好🔐密码123",
+        "uris": [
+          {
+            "uri": "https://unicode.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "empty-user.com",
+      "login": {
+        "username": "",
+        "password": "NoUsernamePass1!",
+        "uris": [
+          {
+            "uri": "https://empty-user.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "long.com",
+      "login": {
+        "username": "long@test.com",
+        "password": "jc3o64o535a8xmhbdbe7bxtuht4lat4bmigy19i2pwsl56wi2xt6emvpivpa9pvgf9w8tfd5xld239qjuoamk41pikdew2d7vh14s88f6d3yaxsnkbu4a9uqu4sj01a57u86qg181rrekyjda3ov9qn11g7muvn9odw04xngv5ijv92tdanwi0foqj39junocjsa4nardh7jb9fj22jagk17r381qtv17quetrunrs3hb5kfpp4h7q21mqnf9mke",
+        "uris": [
+          {
+            "uri": "https://long.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "long-url.example.com",
+      "login": {
+        "username": "longurl@test.com",
+        "password": "LongUrlPass1!",
+        "uris": [
+          {
+            "uri": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "github.com",
+      "login": {
+        "username": "user0@example.com",
+        "password": "f4tpafsia3bs!Aa1",
+        "uris": [
+          {
+            "uri": "https://github.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "google.com",
+      "login": {
+        "username": "user1@example.com",
+        "password": "gf3397ed1pdj!Aa1",
+        "uris": [
+          {
+            "uri": "https://google.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "amazon.com",
+      "login": {
+        "username": "user2@example.com",
+        "password": "celp88rqieyi!Aa1",
+        "uris": [
+          {
+            "uri": "https://amazon.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "facebook.com",
+      "login": {
+        "username": "user3@example.com",
+        "password": "z9o1f1ukymok!Aa1",
+        "uris": [
+          {
+            "uri": "https://facebook.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "twitter.com",
+      "login": {
+        "username": "user4@example.com",
+        "password": "7zgnkk0scnn0!Aa1",
+        "uris": [
+          {
+            "uri": "https://twitter.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "linkedin.com",
+      "login": {
+        "username": "user5@example.com",
+        "password": "qnz8tf0i51u1!Aa1",
+        "uris": [
+          {
+            "uri": "https://linkedin.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "netflix.com",
+      "login": {
+        "username": "user6@example.com",
+        "password": "2gy8kl8jcb03!Aa1",
+        "uris": [
+          {
+            "uri": "https://netflix.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "spotify.com",
+      "login": {
+        "username": "user7@example.com",
+        "password": "45orvbhfj7it!Aa1",
+        "uris": [
+          {
+            "uri": "https://spotify.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "dropbox.com",
+      "login": {
+        "username": "user8@example.com",
+        "password": "v2d9y5x2tqcx!Aa1",
+        "uris": [
+          {
+            "uri": "https://dropbox.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "slack.com",
+      "login": {
+        "username": "user9@example.com",
+        "password": "u2p8q2kch0pz!Aa1",
+        "uris": [
+          {
+            "uri": "https://slack.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "zoom.us",
+      "login": {
+        "username": "user10@example.com",
+        "password": "wwhsjf730o7t!Aa1",
+        "uris": [
+          {
+            "uri": "https://zoom.us"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "notion.so",
+      "login": {
+        "username": "user11@example.com",
+        "password": "khcz4b600xxf!Aa1",
+        "uris": [
+          {
+            "uri": "https://notion.so"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "figma.com",
+      "login": {
+        "username": "user12@example.com",
+        "password": "nic4rwqaa6tj!Aa1",
+        "uris": [
+          {
+            "uri": "https://figma.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "stripe.com",
+      "login": {
+        "username": "user13@example.com",
+        "password": "0sz8mq5xqwsb!Aa1",
+        "uris": [
+          {
+            "uri": "https://stripe.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "vercel.com",
+      "login": {
+        "username": "user14@example.com",
+        "password": "afao9askg5z8!Aa1",
+        "uris": [
+          {
+            "uri": "https://vercel.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "example.com",
+      "login": {
+        "username": "user15@example.com",
+        "password": "6al77ab8x22g!Aa1",
+        "uris": [
+          {
+            "uri": "https://example.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "test.org",
+      "login": {
+        "username": "user16@example.com",
+        "password": "8ldmtdqnpz2b!Aa1",
+        "uris": [
+          {
+            "uri": "https://test.org"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "demo.net",
+      "login": {
+        "username": "user17@example.com",
+        "password": "g0zhualfqz9s!Aa1",
+        "uris": [
+          {
+            "uri": "https://demo.net"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "login.example.co.uk",
+      "login": {
+        "username": "user18@example.com",
+        "password": "iutccxlqjctw!Aa1",
+        "uris": [
+          {
+            "uri": "https://login.example.co.uk"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "github.com",
+      "login": {
+        "username": "user19@example.com",
+        "password": "idc83smsn99q!Aa1",
+        "uris": [
+          {
+            "uri": "https://github.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "google.com",
+      "login": {
+        "username": "user20@example.com",
+        "password": "ubq3uzv5i5k8!Aa1",
+        "uris": [
+          {
+            "uri": "https://google.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "amazon.com",
+      "login": {
+        "username": "user21@example.com",
+        "password": "haxzsdizpm27!Aa1",
+        "uris": [
+          {
+            "uri": "https://amazon.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "facebook.com",
+      "login": {
+        "username": "user22@example.com",
+        "password": "gnuqjnagsboj!Aa1",
+        "uris": [
+          {
+            "uri": "https://facebook.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "twitter.com",
+      "login": {
+        "username": "user23@example.com",
+        "password": "674eez5igvpq!Aa1",
+        "uris": [
+          {
+            "uri": "https://twitter.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "linkedin.com",
+      "login": {
+        "username": "user24@example.com",
+        "password": "428bveryidiv!Aa1",
+        "uris": [
+          {
+            "uri": "https://linkedin.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "netflix.com",
+      "login": {
+        "username": "user25@example.com",
+        "password": "kvp4fbjciamg!Aa1",
+        "uris": [
+          {
+            "uri": "https://netflix.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "spotify.com",
+      "login": {
+        "username": "user26@example.com",
+        "password": "z7smb4xhrjwz!Aa1",
+        "uris": [
+          {
+            "uri": "https://spotify.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "dropbox.com",
+      "login": {
+        "username": "user27@example.com",
+        "password": "xkrdhn5rvi7f!Aa1",
+        "uris": [
+          {
+            "uri": "https://dropbox.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "slack.com",
+      "login": {
+        "username": "user28@example.com",
+        "password": "u3mvvt6eu55v!Aa1",
+        "uris": [
+          {
+            "uri": "https://slack.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "zoom.us",
+      "login": {
+        "username": "user29@example.com",
+        "password": "g7j0wazqqdaw!Aa1",
+        "uris": [
+          {
+            "uri": "https://zoom.us"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "notion.so",
+      "login": {
+        "username": "user30@example.com",
+        "password": "ld9sw11djje8!Aa1",
+        "uris": [
+          {
+            "uri": "https://notion.so"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "figma.com",
+      "login": {
+        "username": "user31@example.com",
+        "password": "acwr9lx8aexg!Aa1",
+        "uris": [
+          {
+            "uri": "https://figma.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "stripe.com",
+      "login": {
+        "username": "user32@example.com",
+        "password": "j1cixz2qkaam!Aa1",
+        "uris": [
+          {
+            "uri": "https://stripe.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "vercel.com",
+      "login": {
+        "username": "user33@example.com",
+        "password": "wja07uvebwjy!Aa1",
+        "uris": [
+          {
+            "uri": "https://vercel.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "example.com",
+      "login": {
+        "username": "user34@example.com",
+        "password": "5ayxlmykj1lq!Aa1",
+        "uris": [
+          {
+            "uri": "https://example.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "test.org",
+      "login": {
+        "username": "user35@example.com",
+        "password": "t9m0dtn3dnep!Aa1",
+        "uris": [
+          {
+            "uri": "https://test.org"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "demo.net",
+      "login": {
+        "username": "user36@example.com",
+        "password": "kohwsi055kxt!Aa1",
+        "uris": [
+          {
+            "uri": "https://demo.net"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "login.example.co.uk",
+      "login": {
+        "username": "user37@example.com",
+        "password": "mgbu9qgeu7xc!Aa1",
+        "uris": [
+          {
+            "uri": "https://login.example.co.uk"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "github.com",
+      "login": {
+        "username": "user38@example.com",
+        "password": "l1c1mv8g2egu!Aa1",
+        "uris": [
+          {
+            "uri": "https://github.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "google.com",
+      "login": {
+        "username": "user39@example.com",
+        "password": "k9raasnqwi9s!Aa1",
+        "uris": [
+          {
+            "uri": "https://google.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "amazon.com",
+      "login": {
+        "username": "user40@example.com",
+        "password": "p5o5xgjalj2p!Aa1",
+        "uris": [
+          {
+            "uri": "https://amazon.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "facebook.com",
+      "login": {
+        "username": "user41@example.com",
+        "password": "1kep55eebi0i!Aa1",
+        "uris": [
+          {
+            "uri": "https://facebook.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "twitter.com",
+      "login": {
+        "username": "user42@example.com",
+        "password": "x647xnwlnng6!Aa1",
+        "uris": [
+          {
+            "uri": "https://twitter.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "linkedin.com",
+      "login": {
+        "username": "user43@example.com",
+        "password": "bkycq2ku33jk!Aa1",
+        "uris": [
+          {
+            "uri": "https://linkedin.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "netflix.com",
+      "login": {
+        "username": "user44@example.com",
+        "password": "sioac7fcfcmg!Aa1",
+        "uris": [
+          {
+            "uri": "https://netflix.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "spotify.com",
+      "login": {
+        "username": "user45@example.com",
+        "password": "ks6s08ziq2a0!Aa1",
+        "uris": [
+          {
+            "uri": "https://spotify.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "dropbox.com",
+      "login": {
+        "username": "user46@example.com",
+        "password": "r08f43djhv5k!Aa1",
+        "uris": [
+          {
+            "uri": "https://dropbox.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "slack.com",
+      "login": {
+        "username": "user47@example.com",
+        "password": "xuberebv0w5e!Aa1",
+        "uris": [
+          {
+            "uri": "https://slack.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "zoom.us",
+      "login": {
+        "username": "user48@example.com",
+        "password": "ujmm5l9f1t0m!Aa1",
+        "uris": [
+          {
+            "uri": "https://zoom.us"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "notion.so",
+      "login": {
+        "username": "user49@example.com",
+        "password": "svad65rp1fmw!Aa1",
+        "uris": [
+          {
+            "uri": "https://notion.so"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "figma.com",
+      "login": {
+        "username": "user50@example.com",
+        "password": "cngd92pdezz6!Aa1",
+        "uris": [
+          {
+            "uri": "https://figma.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "stripe.com",
+      "login": {
+        "username": "user51@example.com",
+        "password": "lrx5lehi8itt!Aa1",
+        "uris": [
+          {
+            "uri": "https://stripe.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "vercel.com",
+      "login": {
+        "username": "user52@example.com",
+        "password": "w3te638mkg6j!Aa1",
+        "uris": [
+          {
+            "uri": "https://vercel.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "example.com",
+      "login": {
+        "username": "user53@example.com",
+        "password": "zje1j5bvnqj1!Aa1",
+        "uris": [
+          {
+            "uri": "https://example.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "test.org",
+      "login": {
+        "username": "user54@example.com",
+        "password": "ny5y3oubuit1!Aa1",
+        "uris": [
+          {
+            "uri": "https://test.org"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "demo.net",
+      "login": {
+        "username": "user55@example.com",
+        "password": "exvkjmwu5pi7!Aa1",
+        "uris": [
+          {
+            "uri": "https://demo.net"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "login.example.co.uk",
+      "login": {
+        "username": "user56@example.com",
+        "password": "piumbko6iw41!Aa1",
+        "uris": [
+          {
+            "uri": "https://login.example.co.uk"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "github.com",
+      "login": {
+        "username": "user57@example.com",
+        "password": "ju25dcsa6wqm!Aa1",
+        "uris": [
+          {
+            "uri": "https://github.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "google.com",
+      "login": {
+        "username": "user58@example.com",
+        "password": "00ua995h2bz0!Aa1",
+        "uris": [
+          {
+            "uri": "https://google.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "amazon.com",
+      "login": {
+        "username": "user59@example.com",
+        "password": "46p1tiniug8a!Aa1",
+        "uris": [
+          {
+            "uri": "https://amazon.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "facebook.com",
+      "login": {
+        "username": "user60@example.com",
+        "password": "4tw6l40s2ksb!Aa1",
+        "uris": [
+          {
+            "uri": "https://facebook.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "twitter.com",
+      "login": {
+        "username": "user61@example.com",
+        "password": "g1mpqka50yga!Aa1",
+        "uris": [
+          {
+            "uri": "https://twitter.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "linkedin.com",
+      "login": {
+        "username": "user62@example.com",
+        "password": "81ue35m2xcfl!Aa1",
+        "uris": [
+          {
+            "uri": "https://linkedin.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "netflix.com",
+      "login": {
+        "username": "user63@example.com",
+        "password": "ifl9ad2fhoqb!Aa1",
+        "uris": [
+          {
+            "uri": "https://netflix.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "spotify.com",
+      "login": {
+        "username": "user64@example.com",
+        "password": "yp6imwg14b89!Aa1",
+        "uris": [
+          {
+            "uri": "https://spotify.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "dropbox.com",
+      "login": {
+        "username": "user65@example.com",
+        "password": "nb0w9c00573w!Aa1",
+        "uris": [
+          {
+            "uri": "https://dropbox.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "slack.com",
+      "login": {
+        "username": "user66@example.com",
+        "password": "1b343li0b5at!Aa1",
+        "uris": [
+          {
+            "uri": "https://slack.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "zoom.us",
+      "login": {
+        "username": "user67@example.com",
+        "password": "5t2fhd08g5mw!Aa1",
+        "uris": [
+          {
+            "uri": "https://zoom.us"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "notion.so",
+      "login": {
+        "username": "user68@example.com",
+        "password": "6nz2ylhlp5yl!Aa1",
+        "uris": [
+          {
+            "uri": "https://notion.so"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "figma.com",
+      "login": {
+        "username": "user69@example.com",
+        "password": "30sq9850szsw!Aa1",
+        "uris": [
+          {
+            "uri": "https://figma.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "stripe.com",
+      "login": {
+        "username": "user70@example.com",
+        "password": "8ewmsrs1yrad!Aa1",
+        "uris": [
+          {
+            "uri": "https://stripe.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "vercel.com",
+      "login": {
+        "username": "user71@example.com",
+        "password": "4v7vkmycdk6p!Aa1",
+        "uris": [
+          {
+            "uri": "https://vercel.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "example.com",
+      "login": {
+        "username": "user72@example.com",
+        "password": "8rcllh4eweod!Aa1",
+        "uris": [
+          {
+            "uri": "https://example.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "test.org",
+      "login": {
+        "username": "user73@example.com",
+        "password": "skmoajxuwbh8!Aa1",
+        "uris": [
+          {
+            "uri": "https://test.org"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "demo.net",
+      "login": {
+        "username": "user74@example.com",
+        "password": "0atoayuocgji!Aa1",
+        "uris": [
+          {
+            "uri": "https://demo.net"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "login.example.co.uk",
+      "login": {
+        "username": "user75@example.com",
+        "password": "obth3f8d3rrw!Aa1",
+        "uris": [
+          {
+            "uri": "https://login.example.co.uk"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "github.com",
+      "login": {
+        "username": "user76@example.com",
+        "password": "95tv2hxjobv6!Aa1",
+        "uris": [
+          {
+            "uri": "https://github.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "google.com",
+      "login": {
+        "username": "user77@example.com",
+        "password": "frzbw24c04qv!Aa1",
+        "uris": [
+          {
+            "uri": "https://google.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "amazon.com",
+      "login": {
+        "username": "user78@example.com",
+        "password": "k4xn14qcjfmd!Aa1",
+        "uris": [
+          {
+            "uri": "https://amazon.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "facebook.com",
+      "login": {
+        "username": "user79@example.com",
+        "password": "u7cs7m2u6xf4!Aa1",
+        "uris": [
+          {
+            "uri": "https://facebook.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "twitter.com",
+      "login": {
+        "username": "user80@example.com",
+        "password": "0bfnxo10xxe9!Aa1",
+        "uris": [
+          {
+            "uri": "https://twitter.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "linkedin.com",
+      "login": {
+        "username": "user81@example.com",
+        "password": "b1g0cwqu42e1!Aa1",
+        "uris": [
+          {
+            "uri": "https://linkedin.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "netflix.com",
+      "login": {
+        "username": "user82@example.com",
+        "password": "mllvh7w9crb3!Aa1",
+        "uris": [
+          {
+            "uri": "https://netflix.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "spotify.com",
+      "login": {
+        "username": "user83@example.com",
+        "password": "vl2vn96wce5m!Aa1",
+        "uris": [
+          {
+            "uri": "https://spotify.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "dropbox.com",
+      "login": {
+        "username": "user84@example.com",
+        "password": "rjx1bz1bd66g!Aa1",
+        "uris": [
+          {
+            "uri": "https://dropbox.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "slack.com",
+      "login": {
+        "username": "user85@example.com",
+        "password": "1z0z3kx94tow!Aa1",
+        "uris": [
+          {
+            "uri": "https://slack.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "zoom.us",
+      "login": {
+        "username": "user86@example.com",
+        "password": "7w1rolgzbwab!Aa1",
+        "uris": [
+          {
+            "uri": "https://zoom.us"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "notion.so",
+      "login": {
+        "username": "user87@example.com",
+        "password": "77fpa7op1osi!Aa1",
+        "uris": [
+          {
+            "uri": "https://notion.so"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "figma.com",
+      "login": {
+        "username": "user88@example.com",
+        "password": "hulh4cgernmv!Aa1",
+        "uris": [
+          {
+            "uri": "https://figma.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "stripe.com",
+      "login": {
+        "username": "user89@example.com",
+        "password": "73203gfitfuj!Aa1",
+        "uris": [
+          {
+            "uri": "https://stripe.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "vercel.com",
+      "login": {
+        "username": "user90@example.com",
+        "password": "8efas40ci0oz!Aa1",
+        "uris": [
+          {
+            "uri": "https://vercel.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "example.com",
+      "login": {
+        "username": "user91@example.com",
+        "password": "gaek2vly9ibu!Aa1",
+        "uris": [
+          {
+            "uri": "https://example.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "test.org",
+      "login": {
+        "username": "user92@example.com",
+        "password": "mj20oq5cx2ez!Aa1",
+        "uris": [
+          {
+            "uri": "https://test.org"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "demo.net",
+      "login": {
+        "username": "user93@example.com",
+        "password": "h6g6dudp1pcw!Aa1",
+        "uris": [
+          {
+            "uri": "https://demo.net"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "login.example.co.uk",
+      "login": {
+        "username": "user94@example.com",
+        "password": "2vypmk1pbltp!Aa1",
+        "uris": [
+          {
+            "uri": "https://login.example.co.uk"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "github.com",
+      "login": {
+        "username": "user95@example.com",
+        "password": "5tg2dyg4c74z!Aa1",
+        "uris": [
+          {
+            "uri": "https://github.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "google.com",
+      "login": {
+        "username": "user96@example.com",
+        "password": "uua1vnix3q05!Aa1",
+        "uris": [
+          {
+            "uri": "https://google.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "amazon.com",
+      "login": {
+        "username": "user97@example.com",
+        "password": "5vbonb6vb1ai!Aa1",
+        "uris": [
+          {
+            "uri": "https://amazon.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "facebook.com",
+      "login": {
+        "username": "user98@example.com",
+        "password": "lchhtkqqowxj!Aa1",
+        "uris": [
+          {
+            "uri": "https://facebook.com"
+          }
+        ]
+      }
+    },
+    {
+      "type": 1,
+      "name": "twitter.com",
+      "login": {
+        "username": "user99@example.com",
+        "password": "ke91q82u63tm!Aa1",
+        "uris": [
+          {
+            "uri": "https://twitter.com"
+          }
+        ]
+      }
+    }
+  ]
+}

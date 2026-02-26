@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "The Murderer's Lock",
+    "slug": "murderers-lock",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.murdererslock.app",
+      "usesAppleSignIn": false,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Unlock your vault with Face ID",
+        "NSBiometricUsageDescription": "Authenticate to access your vault"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#000000"
+      },
+      "package": "com.murdererslock.app",
+      "permissions": ["USE_BIOMETRIC", "USE_FINGERPRINT"]
+    },
+    "plugins": [
+      "expo-local-authentication",
+      "expo-secure-store"
+    ]
+  }
+}

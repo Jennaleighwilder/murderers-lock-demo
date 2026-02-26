@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Murderer's Lock</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-void: #000000;
+      --bg-deep: #0A0A0F;
+      --bg-card: #12121A;
+      --neon-pink: #FF10F0;
+      --neon-cyan: #00F5FF;
+      --neon-purple: #B624FF;
+      --neon-gold: #FFD700;
+      --neon-lime: #39FF14;
+      --neon-orange: #FF6600;
+      --text-white: #FFFFFF;
+      --text-silver: #E0E0E0;
+      --text-gray: #808080;
+    }
+    body {
+      width: 360px;
+      min-height: 280px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-white);
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .popup-header {
+      padding: 20px 20px 16px;
+      background: linear-gradient(180deg, rgba(255,16,240,0.08) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(255,16,240,0.2);
+    }
+    .popup-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FF10F0, #00F5FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .popup-subtitle {
+      font-size: 11px;
+      color: var(--text-gray);
+      margin-top: 4px;
+    }
+    .popup-body {
+      padding: 20px;
+    }
+    .status-card {
+      background: rgba(18,18,26,0.9);
+      border: 2px solid rgba(0,245,255,0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .status-card.synced { border-color: rgba(57,255,20,0.4); }
+    .status-card.locked { border-color: rgba(255,136,0,0.3); }
+    .status-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--neon-cyan);
+      margin-bottom: 6px;
+    }
+    .status-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-silver);
+    }
+    .status-value.synced { color: var(--neon-lime); }
+    .entry-count {
+      font-size: 11px;
+      color: var(--text-gray);
+      margin-top: 8px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px 20px;
+      border: 2px solid;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-bottom: 10px;
+      background: transparent;
+      color: inherit;
+    }
+    .btn-primary {
+      background: rgba(0,245,255,0.1);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+    .btn-primary:hover {
+      background: rgba(0,245,255,0.2);
+      box-shadow: 0 0 20px rgba(0,245,255,0.3);
+    }
+    .btn-secondary {
+      border-color: rgba(255,16,240,0.4);
+      color: var(--neon-pink);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,16,240,0.1);
+    }
+    .btn-ghost {
+      border-color: rgba(128,128,128,0.3);
+      color: var(--text-gray);
+      font-size: 12px;
+      padding: 10px;
+    }
+    .btn-ghost:hover { color: var(--text-silver); }
+    .settings-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .settings-toggle {
+      font-size: 12px;
+      color: var(--text-gray);
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+    .settings-toggle:hover { color: var(--neon-cyan); }
+    .settings-panel {
+      display: none;
+      margin-top: 12px;
+    }
+    .settings-panel.open { display: block; }
+    .input-group {
+      margin-bottom: 12px;
+    }
+    .input-group label {
+      display: block;
+      font-size: 11px;
+      color: var(--text-gray);
+      margin-bottom: 6px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(0,0,0,0.5);
+      border: 2px solid rgba(0,245,255,0.2);
+      border-radius: 8px;
+      color: var(--text-white);
+      font-size: 13px;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--neon-cyan);
+    }
+    .popup-footer {
+      padding: 12px 20px;
+      font-size: 10px;
+      color: var(--text-gray);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+  </style>
+</head>
+<body>
+  <header class="popup-header">
+    <h1 class="popup-title">🔐 The Murderer's Lock</h1>
+    <p class="popup-subtitle">33 Gates • Zero-Knowledge • Auto-Fill</p>
+  </header>
+
+  <main class="popup-body">
+    <div class="status-card" id="status-card">
+      <div class="status-label">Vault Status</div>
+      <div class="status-value" id="status-value">—</div>
+      <div class="entry-count" id="entry-count"></div>
+    </div>
+
+    <a href="#" id="open-vault" class="btn btn-primary">Open Vault</a>
+    <a href="#" id="open-dashboard" class="btn btn-secondary">Dashboard</a>
+
+    <div class="settings-section">
+      <div class="settings-toggle" id="settings-toggle">⚙ Settings</div>
+      <div class="settings-panel" id="settings-panel">
+        <div class="input-group">
+          <label for="app-url">App URL</label>
+          <input type="text" id="app-url" placeholder="https://your-app.vercel.app">
+        </div>
+        <button type="button" class="btn btn-ghost" id="save-settings">Save</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="popup-footer">
+    v1.0.0 • Unlock in app to enable fill on login pages
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

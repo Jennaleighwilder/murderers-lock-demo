@@ -1,0 +1,11 @@
+url,username,password
+weak.com,weak@test.com,123
+weak2.com,,password
+weak3.com,a,a
+duplicate.com,dup@test.com,SamePass123!
+duplicate2.com,dup2@test.com,SamePass123!
+special.com,special@test.com,"!@#$%^&*()_+-=[]{}|;:'"",.<>?"
+unicode.com,你好@test.com,你好🔐密码123
+empty-user.com,,NoUsernamePass1!
+long.com,long@test.com,jc3o64o535a8xmhbdbe7bxtuht4lat4bmigy19i2pwsl56wi2xt6emvpivpa9pvgf9w8tfd5xld239qjuoamk41pikdew2d7vh14s88f6d3yaxsnkbu4a9uqu4sj01a57u86qg181rrekyjda3ov9qn11g7muvn9odw04xngv5ijv92tdanwi0foqj39junocjsa4nardh7jb9fj22jagk17r381qtv17quetrunrs3hb5kfpp4h7q21mqnf9mke
+https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example.com,longurl@test.com,LongUrlPass1!

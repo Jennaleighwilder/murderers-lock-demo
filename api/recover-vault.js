@@ -17,7 +17,7 @@ const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const MAX_ATTEMPTS_PER_IP = 10;
 const MAX_ATTEMPTS_PER_VAULT = 5;
 const BLOCK_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
-const CONSTANT_TIME_MS = 5000;
+const CONSTANT_TIME_MS = process.env.TEST_FAST === '1' ? 0 : 5000;
 
 const ipStore = new Map();
 const vaultStore = new Map();
@@ -70,7 +70,7 @@ module.exports = async (req, res) => {
   const ipRecord = getOrCreate(ipStore, clientKey);
   const now = Date.now();
 
-  recoverySessions.cleanupExpired();
+  await recoverySessions.cleanupExpired();
 
   if (isBlocked(ipRecord)) {
     const resetIn = Math.ceil((ipRecord.blockUntil - now) / 1000);
@@ -137,9 +137,9 @@ module.exports = async (req, res) => {
             vaultRecord.blockUntil = 0;
           }
         }
-        resetVault(vaultId);
+        await resetVault(vaultId);
 
-        const token = recoverySessions.store(result.contents, vaultId);
+        const token = await recoverySessions.store(result.contents, vaultId);
         return res.status(200).json({
           success: true,
           sessionToken: token,

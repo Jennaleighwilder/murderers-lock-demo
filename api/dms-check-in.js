@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
   const { userId } = req.body || {};
   const uid = userId || 'default';
 
-  const rec = dmsStore.checkIn(uid);
+  const rec = await dmsStore.checkIn(uid);
   return res.status(200).json({
     success: true,
     lastCheckIn: rec.lastCheckIn,
